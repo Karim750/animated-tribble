@@ -68,7 +68,20 @@ class MyBinaryTreeInArray
      */
     public function course($index, $value)
     {
-        /** @TODO */
+        //index = root
+        if($this->tree[1] == null){
+            return 1;
+        }
+        $ind = 1;
+        while(array_key_exists($ind, $this->tree)){
+            if($value < $this->tree[$ind]){
+                $ind = $ind * 2;
+            }
+            else{
+                $ind = $ind * 2 + 1;
+            }
+        }
+        return $ind;
     }
 
     /**

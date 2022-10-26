@@ -22,9 +22,25 @@ class Bobby
      */
     public function giveMoney($price)
     {
-        /** @TODO */
-
-        return false;
+        if ($this->total < $price)
+            return false;
+        
+        $rest = $price;
+        while ($rest > 0) {
+            $max = 1;
+            foreach ($this->wallet as $elt) {
+                if (is_numeric($elt)) {
+                    if ($elt > $max){
+                        $max = $elt;
+                    }
+                }
+                
+            }
+            $rest -= $max;
+            $this->total -= $max;
+            unset($this->wallet[array_search($max, $this->wallet)]);
+        }
+        return true;
     }
 
     /**

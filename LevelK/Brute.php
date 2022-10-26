@@ -21,7 +21,52 @@ class Brute
      */
     public function force()
     {
+        $a = 97;
+        while ($a <= 122)
+        {
+            $b = 97;
+            while ($b <= 122)
+            {
+                $c = 97;
+                while ($c <= 122)
+                {
+                    $d = 97;
+                    while ($d <= 122)
+                    {
+                        $ca = chr($a);
+                        $cb = chr($b);
+                        $cc = chr($c);
+                        $cd = chr($d);
+                        $s = $ca . $cb . $cc . $cd;
+                        if (md5($s) == $this->hash)
+                        {
+                            $this->origin = $s;
+                            return;
+                        }
+                        else if (crc32($s) == $this->hash)
+                        {
+                            $this->origin = $s;
+                            return;
+                        }
+                        else if (base64_encode($s) == $this->hash)
+                        {
+                            $this->origin = $s;
+                            return;
+                        }
+                        else if (sha1($s) == $this->hash)
+                        {
+                            $this->origin = $s;
+                            return;
+                        }
+                        $d++;
+                    }
+                    $c++;
 
-        // @TODO
+                }
+                $b++;
+
+            }
+            $a++;
+        }
     }
 }

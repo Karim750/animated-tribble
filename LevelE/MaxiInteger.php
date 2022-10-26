@@ -43,9 +43,29 @@ class MaxiInteger
      * @param MaxiInteger $b
      * @return MaxiInteger
      */
-    private function realSum($a, $b)
+    private function realSum( $a, $b)
     {
-        /** @TODO */
+        $a = $a->getValue();
+        $b = $b->getValue();
+        $result = '';
+        $carry = 0;
+        $i = strlen($a) - 1;
+        $j = strlen($b) - 1;
+        while ($i >= 0 || $j >= 0) {
+            $sum = $carry;
+            if ($j >= 0) {
+                $sum += $b[$j--];
+            }
+            if ($i >= 0) {
+                $sum += $a[$i--];
+            }
+            $result = ($sum % 10) . $result;
+            $carry = (int)($sum / 10);
+        }
+        if ($carry) {
+            $result = $carry . $result;
+        }
+        return new MaxiInteger($result);
     }
 
     private function setValue($value)

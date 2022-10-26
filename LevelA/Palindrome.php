@@ -21,8 +21,10 @@ class Palindrome
     public function generatePalindrome()
     {
         /** @TODO */
-
-        return 'abccba';
+        $tmp = utf8_decode($this->str);
+        $tmp = strrev($tmp);
+        $reverse = utf8_encode($tmp);
+        return $this->str.$reverse;
     }
 
 }

@@ -20,10 +20,10 @@ class FastRandom
     public function generateRandomNumbers()
     {
         // @TODO You have to modify this ONE
-        // Please don't return the ref :D
-        sleep(1);
-        
-        return $this->generateRandomNumbersLaRef();
+        $random_number_array = range(1, $this->numberOfInteger);
+        shuffle($random_number_array );
+        // Please don't return the ref 😄
+        return $random_number_array;
     }
 
 
